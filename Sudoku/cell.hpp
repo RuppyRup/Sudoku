@@ -7,24 +7,26 @@ using namespace std;
 class Cell {
 private:
     string cellID;
-    short row;
-    short column;
-    short optionalValues[9] = {1,2,3,4,5,6,7,8,9};
-    short solutionValue;
+    int row;
+    int column;
+    int optionalValues[9] = {1,2,3,4,5,6,7,8,9};
+    int solutionValue;
     bool cellIsSolved;
-    short optionalCount;
+    int optionalCount;
 public:
-    Cell(short, short);
+    Cell(int, int);
     ~Cell();
-    short getRow() { return row; }
-    short getColumn() { return column; }
+    int getRow() { return row; }
+    int getColumn() { return column; }
     bool getCellIsSolved() { return cellIsSolved; }
-    short getSolutionValue() { return solutionValue; }
-    short * getOptionalValues() { return optionalValues; }
+    int getSolutionValue() { return solutionValue; }
+    int getOptionalCount() { return optionalCount; }
+    int * getOptionalValues() { return optionalValues; }
     void displayCell();
     void displayOptionals();
-    bool setCell(short);
+    bool setCell(int);
     void displayCellAttributes();
+    bool removeOptionalValue(int);
 };
 
 

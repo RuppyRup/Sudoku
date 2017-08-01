@@ -1,7 +1,7 @@
 #include "cell.hpp"
 using namespace std;
 
-Cell::Cell(short row, short column) {
+Cell::Cell(int row, int column) {
     this->row = row;
     this->column = column;
     solutionValue = 0;
@@ -12,7 +12,7 @@ Cell::Cell(short row, short column) {
 Cell::~Cell() {
     cout << "Cell has been destroyed" << endl;
 }
-bool Cell::setCell(short solutionValue) {
+bool Cell::setCell(int solutionValue) {
     if ((solutionValue >= 1) && (solutionValue <= 9)) {
         this->solutionValue = solutionValue;
         optionalCount = 1;
@@ -24,6 +24,26 @@ bool Cell::setCell(short solutionValue) {
         cout << "Cell not set" << endl;
         return false;
     }
+}
+
+bool Cell::removeOptionalValue(int numberToRemove) {
+    int arrayIndex = 0;
+    for (int i = 0; i < optionalCount; i++) {
+        if (optionalValues[i] == numberToRemove) {
+            arrayIndex = i;
+            cout << "Removing value " << optionalValues[i] << " at " << arrayIndex << endl;
+            break;
+        }
+    }
+    if (arrayIndex == 0) {
+        cout << "Couldn't find number to remove from optionals" << endl;
+        return false;
+    }
+    --optionalCount;
+    for (int i = arrayIndex; i < optionalCount; i++) {
+        optionalValues[i] = optionalValues[i+1];
+    }
+    return true;
 }
 
 void Cell::displayCell() {
@@ -44,6 +64,7 @@ void Cell::displayCellAttributes() {
     cout << "row: " << getRow() << endl;
     cout << "column: " << getColumn() << endl;
     cout << "solved? " << getCellIsSolved() << endl;
+    cout << "Optional Count: " << getOptionalCount() << endl;
     displayOptionals();
     displayCell();
 }
