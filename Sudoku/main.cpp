@@ -1,15 +1,14 @@
-//
-//  main.cpp
-//  Sudoku
-//
-//  Created by Rupert Waldron on 01/08/2017.
-//  Copyright © 2017 RuppyRup. All rights reserved.
-//
-
 #include <iostream>
+#include "cell.hpp"
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main() {
+    Cell a1(1,1), a2(1,2);
+    
+    a1.displayCellAttributes();
+    a2.displayCellAttributes();
+    a2.setCell(7);
+    a2.displayCellAttributes();
+    
     return 0;
 }
