@@ -13,7 +13,8 @@ int main() {
     A.getCell(3).setCell(9);
     A.getCell(5).displayCellAttributes();
     A.displayNonet();
-    cout << "Cells solved = " << A.cellsSolved() << endl;
+    int * array = A.cellsSolved();
+    cout << "Cells solved = " << array[0] << " " << array[1] << endl;
     
     return 0;
 }

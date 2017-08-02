@@ -5,6 +5,7 @@ using namespace std;
 Nonet::Nonet(string nonetID) {
     this->nonetID = nonetID;
     nonetSolved = false;
+    solvedCount = 0;
     fillNonet();
 }
 Nonet::~Nonet() {
@@ -29,12 +30,20 @@ void Nonet::displayNonet() {
     }
 }
 
-int Nonet::cellsSolved() {
-    int solvedCount = 0;
+int * Nonet::cellsSolved() {
+    int count = 0;
     for (int i = 0; i < CELL_COUNT; i++) {
         if (myCells[i].getCellIsSolved()) {
-            solvedCount++;
+            solvedCells[count++] = myCells[i].getSolutionValue();
         }
     }
-    return solvedCount;
+    cout << "count: " << count << endl;
+    solvedCount = count;
+    return solvedCells;
+}
+
+void Nonet::nonetReduction() {
+    if (solvedCount > 0) {
+        
+    }
 }
