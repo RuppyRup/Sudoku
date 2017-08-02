@@ -2,26 +2,32 @@
 #define cell_hpp
 #include <iostream>
 #include <stdio.h>
+#define CELL_COUNT 9
 using namespace std;
 
 class Cell {
 private:
-    string cellID;
+    int cellID;
+    string nonetID;
     int row;
     int column;
-    int optionalValues[9] = {1,2,3,4,5,6,7,8,9};
+    int optionalValues[CELL_COUNT] = {1,2,3,4,5,6,7,8,9};
     int solutionValue;
     bool cellIsSolved;
     int optionalCount;
 public:
-    Cell(int, int);
+    Cell();
     ~Cell();
+    void setCellID(int);
+    void setNonetID(string);
     int getRow() { return row; }
     int getColumn() { return column; }
     bool getCellIsSolved() { return cellIsSolved; }
     int getSolutionValue() { return solutionValue; }
     int getOptionalCount() { return optionalCount; }
     int * getOptionalValues() { return optionalValues; }
+    int getCellID() { return cellID; }
+    string getNonetID() { return nonetID; }
     void displayCell();
     void displayOptionals();
     bool setCell(int);

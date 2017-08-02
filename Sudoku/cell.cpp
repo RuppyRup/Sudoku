@@ -1,19 +1,31 @@
 #include "cell.hpp"
 using namespace std;
 
-Cell::Cell(int row, int column) {
-    this->row = row;
-    this->column = column;
+Cell::Cell() {
+    cellID = 0;
+    nonetID = "";
+    row = 0;
+    column = 0;
     solutionValue = 0;
     cellIsSolved = false;
-    optionalCount = 9;
-    cout << "Cell has been created" << endl;
+    optionalCount = CELL_COUNT;
+    cout << "Default Cell has been created" << endl;
 }
+
 Cell::~Cell() {
     cout << "Cell has been destroyed" << endl;
 }
+
+void Cell::setCellID(int cellID) {
+    this->cellID = cellID;
+}
+
+void Cell::setNonetID(string nonetID) {
+    this->nonetID = nonetID;
+}
+
 bool Cell::setCell(int solutionValue) {
-    if ((solutionValue >= 1) && (solutionValue <= 9)) {
+    if ((solutionValue >= 1) && (solutionValue <= CELL_COUNT)) {
         this->solutionValue = solutionValue;
         optionalCount = 1;
         cellIsSolved = true;
@@ -69,6 +81,8 @@ void Cell::displayOptionals() {
 }
 
 void Cell::displayCellAttributes() {
+    cout << "cellID: " << getCellID() << endl;
+    cout << "nonetID: " << getNonetID() << endl;
     cout << "row: " << getRow() << endl;
     cout << "column: " << getColumn() << endl;
     cout << "solved? " << getCellIsSolved() << endl;
