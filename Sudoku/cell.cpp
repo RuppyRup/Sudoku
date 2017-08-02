@@ -28,20 +28,28 @@ bool Cell::setCell(int solutionValue) {
 
 bool Cell::removeOptionalValue(int numberToRemove) {
     int arrayIndex = 0;
+    bool foundNumber = false;
     for (int i = 0; i < optionalCount; i++) {
         if (optionalValues[i] == numberToRemove) {
             arrayIndex = i;
             cout << "Removing value " << optionalValues[i] << " at " << arrayIndex << endl;
+            foundNumber = true;
             break;
         }
     }
-    if (arrayIndex == 0) {
+    if (!foundNumber) {
         cout << "Couldn't find number to remove from optionals" << endl;
         return false;
     }
     --optionalCount;
     for (int i = arrayIndex; i < optionalCount; i++) {
         optionalValues[i] = optionalValues[i+1];
+    }
+    // if optional value = 1 then the solution must have been found
+    if (optionalCount == 1) {
+        cellIsSolved = true;
+        solutionValue = optionalValues[0];
+        cout << "Cell is solved" << endl;
     }
     return true;
 }
