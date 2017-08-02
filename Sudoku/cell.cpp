@@ -4,8 +4,6 @@ using namespace std;
 Cell::Cell() {
     cellID = 0;
     nonetID = "";
-    row = 0;
-    column = 0;
     solutionValue = 0;
     cellIsSolved = false;
     optionalCount = CELL_COUNT;
@@ -83,8 +81,6 @@ void Cell::displayOptionals() {
 void Cell::displayCellAttributes() {
     cout << "cellID: " << getCellID() << endl;
     cout << "nonetID: " << getNonetID() << endl;
-    cout << "row: " << getRow() << endl;
-    cout << "column: " << getColumn() << endl;
     cout << "solved? " << getCellIsSolved() << endl;
     cout << "Optional Count: " << getOptionalCount() << endl;
     displayOptionals();

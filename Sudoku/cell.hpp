@@ -9,8 +9,6 @@ class Cell {
 private:
     int cellID;
     string nonetID;
-    int row;
-    int column;
     int optionalValues[CELL_COUNT] = {1,2,3,4,5,6,7,8,9};
     int solutionValue;
     bool cellIsSolved;
@@ -20,8 +18,6 @@ public:
     ~Cell();
     void setCellID(int);
     void setNonetID(string);
-    int getRow() { return row; }
-    int getColumn() { return column; }
     bool getCellIsSolved() { return cellIsSolved; }
     int getSolutionValue() { return solutionValue; }
     int getOptionalCount() { return optionalCount; }

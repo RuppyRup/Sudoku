@@ -15,7 +15,7 @@ public:
     Nonet(string);
     ~Nonet();
     string getNonetID() { return nonetID; }
-    bool getNonetSolved() { return nonetSolved; }
+    int cellsSolved();
     Cell & getCell(int);
     void fillNonet();
     void displayNonet();

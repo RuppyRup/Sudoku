@@ -5,6 +5,7 @@ using namespace std;
 Nonet::Nonet(string nonetID) {
     this->nonetID = nonetID;
     nonetSolved = false;
+    fillNonet();
 }
 Nonet::~Nonet() {
     cout << "A nonet has been destroyed" << endl;
@@ -26,4 +27,14 @@ void Nonet::displayNonet() {
         if ((i == 2) || (i == 5) || (i == 8))
             cout << "|" << endl;
     }
+}
+
+int Nonet::cellsSolved() {
+    int solvedCount = 0;
+    for (int i = 0; i < CELL_COUNT; i++) {
+        if (myCells[i].getCellIsSolved()) {
+            solvedCount++;
+        }
+    }
+    return solvedCount;
 }
