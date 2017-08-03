@@ -17,8 +17,9 @@ public:
     Nonet(char);
     ~Nonet();
     char getNonetID() { return nonetID; }
-    int getSolvedCount() { return solvedCount; }
-    int * cellsSolved();
+    bool isNonetSolved();
+    int getSolvedCount();
+    void cellsSolved();
     Cell & getCell(int);
     void fillNonet();
     void displayNonet();
