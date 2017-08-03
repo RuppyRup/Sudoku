@@ -17,7 +17,7 @@ public:
     Cell();
     ~Cell();
     void setCellID(int);
-    void setNonetID(string);
+    void setNonetID(char);
     bool getCellIsSolved() { return cellIsSolved; }
     int getSolutionValue() { return solutionValue; }
     int getOptionalCount() { return optionalCount; }
@@ -30,8 +30,5 @@ public:
     void displayCellAttributes();
     bool removeOptionalValue(int);
 };
-
-
-
 
 #endif

@@ -8,15 +8,15 @@ using namespace std;
 
 class Nonet {
 private:
-    string nonetID;
+    char nonetID;
     bool nonetSolved;
     int solvedCount;
     Cell myCells[CELL_COUNT];
     int solvedCells[CELL_COUNT];
 public:
-    Nonet(string);
+    Nonet(char);
     ~Nonet();
-    string getNonetID() { return nonetID; }
+    char getNonetID() { return nonetID; }
     int getSolvedCount() { return solvedCount; }
     int * cellsSolved();
     Cell & getCell(int);

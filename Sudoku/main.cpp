@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 
-    Nonet A("A");
+    Nonet A('A');
     
     
     A.getCell(2).displayCellAttributes();

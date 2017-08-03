@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Nonet::Nonet(string nonetID) {
+Nonet::Nonet(char nonetID) {
     this->nonetID = nonetID;
     nonetSolved = false;
     solvedCount = 0;

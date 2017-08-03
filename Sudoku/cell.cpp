@@ -18,7 +18,7 @@ void Cell::setCellID(int cellID) {
     this->cellID = cellID;
 }
 
-void Cell::setNonetID(string nonetID) {
+void Cell::setNonetID(char nonetID) {
     this->nonetID = nonetID;
 }
 
