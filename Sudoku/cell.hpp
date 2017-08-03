@@ -8,7 +8,7 @@ using namespace std;
 class Cell {
 private:
     int cellID;
-    string nonetID;
+    char nonetID;
     int optionalValues[CELL_COUNT] = {1,2,3,4,5,6,7,8,9};
     int solutionValue;
     bool cellIsSolved;
@@ -23,7 +23,7 @@ public:
     int getOptionalCount() { return optionalCount; }
     int * getOptionalValues() { return optionalValues; }
     int getCellID() { return cellID; }
-    string getNonetID() { return nonetID; }
+    char getNonetID() { return nonetID; }
     void displayCell();
     void displayOptionals();
     bool setCell(int);

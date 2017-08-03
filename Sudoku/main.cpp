@@ -7,7 +7,6 @@ int main() {
 
     Nonet A('A');
     
-    
     A.getCell(2).displayCellAttributes();
     A.getCell(5).setCell(4);
     A.getCell(3).setCell(9);
