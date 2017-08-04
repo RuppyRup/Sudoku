@@ -7,11 +7,11 @@ Cell::Cell() {
     solutionValue = 0;
     cellIsSolved = false;
     optionalCount = CELL_COUNT;
-    cout << "Default Cell has been created" << endl;
+    //cout << "Default Cell has been created" << endl;
 }
 
 Cell::~Cell() {
-    cout << "Cell has been destroyed" << endl;
+    //cout << "Cell has been destroyed" << endl;
 }
 
 void Cell::setCellID(int cellID) {
@@ -30,13 +30,14 @@ bool Cell::setCell(int solutionValue) {
  at the start or when a solution is found for the cell **/
     if ((solutionValue >= 1) && (solutionValue <= CELL_COUNT)) {
         this->solutionValue = solutionValue;
+        optionalValues[0] = solutionValue;
         optionalCount = 1;
         cellIsSolved = true;
-        cout << "Cell has been set" << endl;
+        //cout << "Cell has been set" << endl;
         return true;
     }
     else {
-        cout << "Cell not set" << endl;
+        //cout << "Cell not set" << endl;
         return false;
     }
 }
@@ -51,13 +52,13 @@ bool Cell::removeOptionalValue(int numberToRemove) {
     for (int i = 0; i < optionalCount; i++) {
         if (optionalValues[i] == numberToRemove) {
             arrayIndex = i;
-            cout << "Removing value " << optionalValues[i] << " at " << arrayIndex << endl;
+            //cout << "Removing value " << optionalValues[i] << " at " << arrayIndex << endl;
             foundNumber = true;
             break;
         }
     }
     if (!foundNumber) {
-        cout << "Couldn't find number to remove from optionals" << endl;
+        //cout << "Couldn't find number to remove from optionals" << endl;
         return false;
     }
     --optionalCount;
@@ -68,7 +69,7 @@ bool Cell::removeOptionalValue(int numberToRemove) {
     if (optionalCount == 1) {
         cellIsSolved = true;
         solutionValue = optionalValues[0];
-        cout << "Cell is solved" << endl;
+        //cout << "Cell is solved" << endl;
     }
     return true;
 }

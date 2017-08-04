@@ -24,6 +24,7 @@ public:
     void fillNonet();
     void displayNonet();
     void nonetReduction();
+    void nonetFindUniqueOptionals();
 };
 
 #endif

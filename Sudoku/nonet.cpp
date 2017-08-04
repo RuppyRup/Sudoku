@@ -10,7 +10,7 @@ Nonet::Nonet(char nonetID) {
     fillNonet(); //fills the nonet with ids etc
 }
 Nonet::~Nonet() {
-    cout << "A nonet has been destroyed" << endl;
+    //cout << "A nonet has been destroyed" << endl;
 }
 Cell & Nonet::getCell(int cellID) {
 /** returns the reference cell to the corresponding cellID (1-9) **/
@@ -56,7 +56,7 @@ void Nonet::cellsSolved() {
             solvedCells[count++] = myCells[i].getSolutionValue();
         }
     }
-    cout << "count: " << count << endl;
+    cout << "cells solved: " << count << endl;
     solvedCount = count;
 }
 
@@ -71,6 +71,9 @@ void Nonet::nonetReduction() {
             myCells[i].removeOptionalValue(solvedCells[j]);
         }
     }
+}
+    
+void Nonet::nonetFindUniqueOptionals() {
 /** removes optional values where that is the only option for a 
  particular nonet **/
     int * newArray = new int[81];
@@ -79,35 +82,42 @@ void Nonet::nonetReduction() {
         if (myCells[i].getCellIsSolved()) {
             continue;
         }
-        cout << "Checking cell" << i+1 << endl;
+        cout << "Checking cell " << i+1 << endl;
         for (int k = 0; k < myCells[i].getOptionalCount(); k++) {
             newArray[arrayIndex++] = myCells[i].getOptionalValues()[k];
         }
     }
-    for(int i = 0; i < arrayIndex; i++) {
+    /*for(int i = 0; i < arrayIndex; i++) {
         cout << newArray[i] << ", ";
     }
-    cout << endl;
-    
+    cout << endl;*/
+    /** remove all values greater than one by replacing with zero**/
+    int tmp = 0;
     for(int i = 0; i < arrayIndex; i++) {
+        tmp = newArray[i];
         for(int j = i+1; j < arrayIndex; j++ ) {
-            if(newArray[i] == newArray[j]) {
-                for(int k = i; k < j-1; k++)
-                    newArray[k] = newArray[k+1];
-                arrayIndex--;
-                for(int m = j; m < arrayIndex-1; m++)
-                    newArray[m] = newArray[m+1];
-                arrayIndex--;
+            if(tmp == newArray[j]) {
+                newArray[i] = 0;
+                newArray[j] = 0;
             }
         }
     }
     
-    for(int i = 0; i < arrayIndex; i++) {
-        cout << newArray[i] << ", ";
+    for(int j = 0; j < arrayIndex; j++) {
+        if (newArray[j]) {
+            for (int i = 0; i < CELL_COUNT; i++) {
+                if (myCells[i].getCellIsSolved()) {
+                    continue;
+                }
+                for (int k = 0; k < myCells[i].getOptionalCount(); k++) {
+                    if (newArray[j] == myCells[i].getOptionalValues()[k]) {
+                        myCells[i].setCell(newArray[j]);
+                        cout << "Setting Cell " << i << " with " <<newArray[j] << endl;
+                    }
+                }
+            }
+
+        }
     }
-    cout << endl;
-    
-    
-    
     delete [] newArray;
 }
