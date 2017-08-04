@@ -1,11 +1,13 @@
 #include <iostream>
 #include "cell.hpp"
 #include "nonet.hpp"
+#include "sudoku.hpp"
 using namespace std;
 
 int main() {
-
-    Nonet A('A');
+    Nonet A('A'), B('B');
+    Nonet array[2] = {A, B};
+    Sudoku mySudoku(array);
     
     A.getCell(1).setCell(1);
     A.getCell(2).setCell(2);

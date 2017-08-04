@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E78A8AEC1F34D00C0027FA7B /* sudoku.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78A8AEA1F34D00C0027FA7B /* sudoku.cpp */; };
 		E79E4A161F30B3B10098C07F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E79E4A151F30B3B10098C07F /* main.cpp */; };
 		E79E4A1E1F30B3FC0098C07F /* cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E79E4A1C1F30B3FC0098C07F /* cell.cpp */; };
 		E79E4A341F32078A0098C07F /* nonet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E79E4A321F32078A0098C07F /* nonet.cpp */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E78A8AEA1F34D00C0027FA7B /* sudoku.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sudoku.cpp; sourceTree = "<group>"; };
+		E78A8AEB1F34D00C0027FA7B /* sudoku.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sudoku.hpp; sourceTree = "<group>"; };
 		E79E4A121F30B3B10098C07F /* Sudoku */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sudoku; sourceTree = BUILT_PRODUCTS_DIR; };
 		E79E4A151F30B3B10098C07F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E79E4A1C1F30B3FC0098C07F /* cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cell.cpp; sourceTree = "<group>"; };
@@ -68,6 +71,8 @@
 				E79E4A1D1F30B3FC0098C07F /* cell.hpp */,
 				E79E4A321F32078A0098C07F /* nonet.cpp */,
 				E79E4A331F32078A0098C07F /* nonet.hpp */,
+				E78A8AEA1F34D00C0027FA7B /* sudoku.cpp */,
+				E78A8AEB1F34D00C0027FA7B /* sudoku.hpp */,
 			);
 			path = Sudoku;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			files = (
 				E79E4A341F32078A0098C07F /* nonet.cpp in Sources */,
 				E79E4A161F30B3B10098C07F /* main.cpp in Sources */,
+				E78A8AEC1F34D00C0027FA7B /* sudoku.cpp in Sources */,
 				E79E4A1E1F30B3FC0098C07F /* cell.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
