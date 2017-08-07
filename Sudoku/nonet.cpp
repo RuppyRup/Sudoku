@@ -3,15 +3,21 @@
 #include <set>
 using namespace std;
 
-Nonet::Nonet(char nonetID) {
-    this->nonetID = nonetID; //contructors provide the nonetID
+Nonet::Nonet() {
+    nonetID = 'X'; //contructors provide the nonetID
     nonetSolved = false; // flag to say if the nonet has been solved
     solvedCount = 0; // current number of solved cells in the nonet
     fillNonet(); //fills the nonet with ids etc
+    cout << "Nonet with ID: " << nonetID << " created" << endl;
 }
 Nonet::~Nonet() {
     //cout << "A nonet has been destroyed" << endl;
 }
+
+void Nonet::setNonetID(char nonetID) {
+    this->nonetID = nonetID;
+}
+
 Cell & Nonet::getCell(int cellID) {
 /** returns the reference cell to the corresponding cellID (1-9) **/
     return myCells[cellID - 1];

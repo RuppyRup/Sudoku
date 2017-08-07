@@ -9,10 +9,11 @@ using namespace std;
 
 class Sudoku {
 private:
-    Nonet * myNonets;
+    Nonet myNonets[NONET_COUNT];
 public:
-    Sudoku(Nonet *);
+    Sudoku();
     ~Sudoku();
+    void fillSudoku();
     Nonet & getNonet(char nonetID);
 };
 

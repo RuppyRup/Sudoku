@@ -14,9 +14,10 @@ private:
     Cell myCells[CELL_COUNT];
     int solvedCells[CELL_COUNT];
 public:
-    Nonet(char);
+    Nonet();
     ~Nonet();
     char getNonetID() { return nonetID; }
+    void setNonetID(char);
     bool isNonetSolved();
     int getSolvedCount();
     void cellsSolved();

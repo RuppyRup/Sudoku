@@ -5,10 +5,18 @@
 using namespace std;
 
 int main() {
-    Nonet A('A'), B('B');
-    Nonet array[2] = {A, B};
-    Sudoku mySudoku(array);
+    //Nonet A('A'), B('B');
+    //Nonet array[2] = {A, B};
+    Sudoku mySudoku;
     
+    
+    
+    
+    for (int i = 0; i < NONET_COUNT; i++) {
+        cout << "Nonet" << mySudoku.getNonet((char)(65 + i)).getNonetID() << endl;
+        mySudoku.getNonet((char)(65 + i)).displayNonet();
+    }
+    /*
     A.getCell(1).setCell(1);
     A.getCell(2).setCell(2);
     A.getCell(3).setCell(3);
@@ -22,16 +30,16 @@ int main() {
     A.getCell(8).removeOptionalValue(6);
     A.getCell(9).setCell(9);
     A.nonetReduction();
-    /*for(int i = 1; i <= CELL_COUNT; i++) {
+    for(int i = 1; i <= CELL_COUNT; i++) {
         A.getCell(i).displayCellAttributes();
-    }*/
+    }
     A.displayNonet();
     A.nonetReduction();
     A.nonetFindUniqueOptionals();
-    /*for(int i = 1; i <= CELL_COUNT; i++) {
+    for(int i = 1; i <= CELL_COUNT; i++) {
         A.getCell(i).displayCellAttributes();
-    }*/
+    }
     A.displayNonet();
-       
+    */
     return 0;
 }
