@@ -26,44 +26,64 @@ void Sudoku::fillSudoku() {
     }
 }
 
+void Sudoku::sudokuReduction() {
+    for (int i = 0; i < NONET_COUNT; i++) {
+        getNonet((char)(65 + i)).nonetReduction();
+        getNonet((char)(65 + i)).nonetFindUniqueOptionals();
+    }
+}
+
+int Sudoku::crossCheckAll() {
+    int cellsSolved = 0;
+    for (int i = 0; i < NONET_COUNT; i++) {
+        for(int j = 1; j <= CELL_COUNT; j++) {
+            crossCheckRow(getNonet((char)(65 + i)).getCell(j));
+            if (getNonet((char)(65 + i)).getCell(j).getCellIsSolved()) {
+                cellsSolved++;
+            }
+        }
+        sudokuReduction();
+    }
+    return cellsSolved;
+}
+
 void Sudoku::crossCheckRow(Cell & cellObj) {
     char myNonetID = cellObj.getNonetID();
     int myCellID = cellObj.getCellID();
-    cout << "myNonetID: " << myNonetID << endl;
-    cout << "myCellID: " << myCellID << endl;
-    if ((myNonetID >= 65) && (myNonetID <= 67)) {
-        if (myCellID <= 3) {
-            for (int i = 65; i < 68; i++) {
-                for (int k = 1; k < 4; k++) {
-                    if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                        cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+    //cout << "myNonetID: " << myNonetID << endl;
+    //cout << "myCellID: " << myCellID << endl;
+    for (int m = 0; m < NONET_COUNT; m += 3) {
+        if ((myNonetID >= 65 + m) && (myNonetID <= 67 + m)) {
+            if (myCellID <= 3) {
+                for (int i = 65 + m; i < 68 + m; i++) {
+                    for (int k = 1; k < 4; k++) {
+                        if (getNonet((char)i).getCell(k).getCellIsSolved()) {
+                            cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+                        }
                     }
                 }
-                
             }
-        }
-        else if ((myCellID > 3) && (myCellID <= 6)) {
-            for (int i = 65; i < 68; i++) {
-                for (int k = 4; k < 7; k++) {
-                    if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                        cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+            else if ((myCellID > 3) && (myCellID <= 6)) {
+                for (int i = 65 + m; i < 68 + m; i++) {
+                    for (int k = 4; k < 7; k++) {
+                        if (getNonet((char)i).getCell(k).getCellIsSolved()) {
+                            cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+                        }
                     }
                 }
-                
             }
-        }
-        else if ((myCellID > 6) && (myCellID <= 9)) {
-            for (int i = 65; i < 68; i++) {
-                for (int k = 7; k < 10; k++) {
-                    if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                        cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+            else if ((myCellID > 6) && (myCellID <= 9)) {
+                for (int i = 65 + m; i < 68 + m; i++) {
+                    for (int k = 7; k < 10; k++) {
+                        if (getNonet((char)i).getCell(k).getCellIsSolved()) {
+                            cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+                        }
                     }
                 }
-                
             }
-        }
-        else {
-            cout << "Cross Check cell id not found" << endl;
+            else {
+                cout << "Cross Check cell id not found" << endl;
+            }
         }
     }
 }

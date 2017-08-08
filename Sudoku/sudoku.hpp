@@ -16,7 +16,9 @@ public:
     void fillSudoku();
     Nonet & getNonet(char nonetID);
     void displaySudoku();
+    void sudokuReduction();
     void crossCheckRow(Cell &);
+    int crossCheckAll();
 };
 
 

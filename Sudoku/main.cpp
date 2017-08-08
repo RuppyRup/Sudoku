@@ -34,28 +34,24 @@ int main() {
     mySudoku.getNonet('H').getCell(6).setCell(9);
     mySudoku.getNonet('H').getCell(7).setCell(3);
     mySudoku.getNonet('H').getCell(9).setCell(4);
-    mySudoku.getNonet('H').getCell(8).setCell(6);
     mySudoku.getNonet('I').getCell(2).setCell(8);
     mySudoku.getNonet('I').getCell(7).setCell(9);
     mySudoku.getNonet('I').getCell(8).setCell(7);
+    mySudoku.displaySudoku();
+    mySudoku.sudokuReduction();
     
-    for (int i = 0; i < NONET_COUNT; i++) {
-        mySudoku.getNonet((char)(65 + i)).nonetReduction();
-        mySudoku.getNonet((char)(65 + i)).nonetFindUniqueOptionals();
-    }
-    /*
-    for (int i = 0; i < NONET_COUNT; i++) {
-        cout << "Nonet" << mySudoku.getNonet((char)(65 + i)).getNonetID() << endl;
-        mySudoku.getNonet((char)(65 + i)).displayNonet();
-    }
-    */
+    int tmp = 0;
+    int final = 0;
+    do {
+        tmp =  mySudoku.crossCheckAll();
+        final =  mySudoku.crossCheckAll();
+        cout << tmp << " : " << final << endl;
+    } while (tmp < final);
     
     mySudoku.displaySudoku();
     
-    mySudoku.crossCheckRow(mySudoku.getNonet('A').getCell(8));
-    cout << "NonetID: " << mySudoku.getNonet('A').getCell(8).getNonetID();
+    //mySudoku.getNonet('E').getCell(2).displayOptionals();
     
-    mySudoku.getNonet('A').getCell(8).displayOptionals();
     
     return 0;
 }

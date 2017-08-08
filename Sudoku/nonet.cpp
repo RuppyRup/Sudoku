@@ -8,7 +8,7 @@ Nonet::Nonet() {
     nonetSolved = false; // flag to say if the nonet has been solved
     solvedCount = 0; // current number of solved cells in the nonet
     //fillNonet(); //fills the nonet with ids etc
-    cout << "Nonet with ID: " << nonetID << " created" << endl;
+    //cout << "Nonet with ID: " << nonetID << " created" << endl;
 }
 Nonet::~Nonet() {
     //cout << "A nonet has been destroyed" << endl;
@@ -63,7 +63,7 @@ void Nonet::cellsSolved() {
             solvedCells[count++] = myCells[i].getSolutionValue();
         }
     }
-    cout << "cells solved: " << count << endl;
+    //cout << "cells solved: " << count << endl;
     solvedCount = count;
 }
 
@@ -89,7 +89,7 @@ void Nonet::nonetFindUniqueOptionals() {
         if (myCells[i].getCellIsSolved()) {
             continue;
         }
-        cout << "Checking cell " << i+1 << endl;
+        //cout << "Checking cell " << i+1 << endl;
         for (int k = 0; k < myCells[i].getOptionalCount(); k++) {
             newArray[arrayIndex++] = myCells[i].getOptionalValues()[k];
         }
@@ -119,7 +119,7 @@ void Nonet::nonetFindUniqueOptionals() {
                 for (int k = 0; k < myCells[i].getOptionalCount(); k++) {
                     if (newArray[j] == myCells[i].getOptionalValues()[k]) {
                         myCells[i].setCell(newArray[j]);
-                        cout << "Setting Cell " << i << " with " <<newArray[j] << endl;
+                        //cout << "Setting Cell " << i << " with " <<newArray[j] << endl;
                     }
                 }
             }
