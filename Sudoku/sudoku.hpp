@@ -16,6 +16,7 @@ public:
     void fillSudoku();
     Nonet & getNonet(char nonetID);
     void displaySudoku();
+    void crossCheckRow(Cell &);
 };
 
 

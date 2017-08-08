@@ -49,9 +49,13 @@ int main() {
         mySudoku.getNonet((char)(65 + i)).displayNonet();
     }
     */
+    
     mySudoku.displaySudoku();
     
-    mySudoku.getNonet('F').getCell(5).displayOptionals();
+    mySudoku.crossCheckRow(mySudoku.getNonet('A').getCell(8));
+    cout << "NonetID: " << mySudoku.getNonet('A').getCell(8).getNonetID();
+    
+    mySudoku.getNonet('A').getCell(8).displayOptionals();
     
     return 0;
 }

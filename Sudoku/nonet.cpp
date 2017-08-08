@@ -7,7 +7,7 @@ Nonet::Nonet() {
     nonetID = 'X'; //contructors provide the nonetID
     nonetSolved = false; // flag to say if the nonet has been solved
     solvedCount = 0; // current number of solved cells in the nonet
-    fillNonet(); //fills the nonet with ids etc
+    //fillNonet(); //fills the nonet with ids etc
     cout << "Nonet with ID: " << nonetID << " created" << endl;
 }
 Nonet::~Nonet() {
@@ -16,6 +16,7 @@ Nonet::~Nonet() {
 
 void Nonet::setNonetID(char nonetID) {
     this->nonetID = nonetID;
+    fillNonet();
 }
 
 Cell & Nonet::getCell(int cellID) {
