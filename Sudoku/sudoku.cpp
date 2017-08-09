@@ -98,6 +98,7 @@ void Sudoku::crossCheckColumn(Cell & cellObj) {
             if ((myCellID == 1) || (myCellID == 4) || (myCellID == 7)) {
                 for (int i = 65 + m; i < 72 + m; i+=3) {
                     for (int k = 1; k <= CELL_COUNT; k+=3) {
+                        cout << "Nonet: " << char(i) << "Cell: " << k << endl;
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
                             cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
                         }
@@ -106,7 +107,8 @@ void Sudoku::crossCheckColumn(Cell & cellObj) {
             }
             else if ((myCellID == 2) || (myCellID == 5) || (myCellID == 8)) {
                 for (int i = 65 + m; i < 72 + m; i+=3) {
-                    for (int k = 2; k < CELL_COUNT; k+=3) {
+                    for (int k = 2; k <= CELL_COUNT; k+=3) {
+                        cout << "Nonet: " << char(i) << "Cell: " << k << endl;
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
                             cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
                         }
@@ -115,7 +117,8 @@ void Sudoku::crossCheckColumn(Cell & cellObj) {
             }
             else if ((myCellID == 3) || (myCellID == 6) || (myCellID == 9)) {
                 for (int i = 65 + m; i < 72 + m; i+=3) {
-                    for (int k = 2; k < CELL_COUNT; k+=3) {
+                    for (int k = 3; k <= CELL_COUNT; k+=3) {
+                        cout << "Nonet: " << char(i) << "Cell: " << k << endl;
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
                             cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
                         }

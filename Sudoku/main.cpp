@@ -48,8 +48,8 @@ int main() {
         cout << tmp << " : " << final << endl;
     } while (tmp < final);*/
     
-    char non = 'A';
-    int cell = 8;
+    char non = 'G';
+    int cell = 6;
     
     mySudoku.getNonet(non).getCell(cell).displayOptionals();
     
