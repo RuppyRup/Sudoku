@@ -18,6 +18,7 @@ public:
     void displaySudoku();
     void sudokuReduction();
     void crossCheckRow(Cell &);
+    void crossCheckColumn(Cell &);
     int crossCheckAll();
 };
 

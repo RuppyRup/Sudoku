@@ -88,6 +88,48 @@ void Sudoku::crossCheckRow(Cell & cellObj) {
     }
 }
 
+void Sudoku::crossCheckColumn(Cell & cellObj) {
+    char myNonetID = cellObj.getNonetID();
+    int myCellID = cellObj.getCellID();
+    cout << "myNonetID: " << myNonetID << endl;
+    cout << "myCellID: " << myCellID << endl;
+    for (int m = 0; m < NONET_COUNT; m += 3) {
+        if ((myNonetID == 65 + m) || (myNonetID == 68 + m) || (myNonetID == 71 + m)) {
+            if ((myCellID == 1) || (myCellID == 4) || (myCellID == 7)) {
+                for (int i = 65 + m; i < 72 + m; i+=3) {
+                    for (int k = 1; k <= CELL_COUNT; k+=3) {
+                        if (getNonet((char)i).getCell(k).getCellIsSolved()) {
+                            cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+                        }
+                    }
+                }
+            }
+            else if ((myCellID == 2) || (myCellID == 5) || (myCellID == 8)) {
+                for (int i = 65 + m; i < 72 + m; i+=3) {
+                    for (int k = 2; k < CELL_COUNT; k+=3) {
+                        if (getNonet((char)i).getCell(k).getCellIsSolved()) {
+                            cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+                        }
+                    }
+                }
+            }
+            else if ((myCellID == 3) || (myCellID == 6) || (myCellID == 9)) {
+                for (int i = 65 + m; i < 72 + m; i+=3) {
+                    for (int k = 2; k < CELL_COUNT; k+=3) {
+                        if (getNonet((char)i).getCell(k).getCellIsSolved()) {
+                            cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
+                        }
+                    }
+                }
+            }
+            else {
+                cout << "Cross Check cell id not found" << endl;
+            }
+        }
+    }
+}
+
+
 void Sudoku::displaySudoku() {
     /** Displays the cells with solutionvalue of the nonet **/
     for (int m = 0; m < CELL_COUNT; m+= 3) {

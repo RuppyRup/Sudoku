@@ -40,17 +40,24 @@ int main() {
     mySudoku.displaySudoku();
     mySudoku.sudokuReduction();
     
-    int tmp = 0;
+    /*int tmp = 0;
     int final = 0;
     do {
         tmp =  mySudoku.crossCheckAll();
         final =  mySudoku.crossCheckAll();
         cout << tmp << " : " << final << endl;
-    } while (tmp < final);
+    } while (tmp < final);*/
     
-    mySudoku.displaySudoku();
+    char non = 'A';
+    int cell = 8;
     
-    //mySudoku.getNonet('E').getCell(2).displayOptionals();
+    mySudoku.getNonet(non).getCell(cell).displayOptionals();
+    
+    mySudoku.crossCheckColumn(mySudoku.getNonet(non).getCell(cell));
+    
+    //mySudoku.displaySudoku();
+    
+    mySudoku.getNonet(non).getCell(cell).displayOptionals();
     
     
     return 0;
