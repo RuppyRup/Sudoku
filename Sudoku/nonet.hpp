@@ -22,6 +22,7 @@ public:
     int getSolvedCount();
     void cellsSolved();
     Cell & getCell(int);
+    bool nonetSetCell(Cell &, int);
     void fillNonet();
     void displayNonet();
     void nonetReduction();

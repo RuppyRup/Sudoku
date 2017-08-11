@@ -111,6 +111,7 @@ void Sudoku::crossCheckColumn(Cell & cellObj) {
                     for (int k = 2; k <= CELL_COUNT; k+=3) {
                         //cout << "Nonet: " << char(i) << "Cell: " << k << endl;
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
+                           
                             cellObj.removeOptionalValue(getNonet((char)i).getCell(k).getSolutionValue());
                         }
                     }

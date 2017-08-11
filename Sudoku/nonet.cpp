@@ -67,15 +67,27 @@ void Nonet::cellsSolved() {
     solvedCount = count;
 }
 
+bool Nonet::nonetSetCell(Cell & cellObj, int solutionValue) {
+    cellObj.setCell(solutionValue);
+    return true;
+}
+
 void Nonet::nonetReduction() {
 /** checks the values of the cells solved in the nonet
  and removes these from the optional value array for each cell
  that hasn't yet been solved **/
     cellsSolved();
 /** removes optional values for solved cells **/
-    for (int j = 0; j < solvedCount; j++) {
-        for (int i = 0; i < CELL_COUNT; i++) {
-            myCells[i].removeOptionalValue(solvedCells[j]);
+    for (int j = 0; j < CELL_COUNT; j++) {
+        //cout << "Nonet reduction" << endl;
+        for (int i = 0; i < solvedCount; i++) {
+            //cout << "Nonet reduction" << endl;
+            //cout << "true: " << myCells[j].removeOptionalValue(solvedCells[i]) << endl;
+            if (myCells[j].removeOptionalValue(solvedCells[i])) {
+                cellsSolved();
+                cout << "Nonet Reduction: solution found" << endl;
+                break;
+            }
         }
     }
 }
@@ -118,8 +130,8 @@ void Nonet::nonetFindUniqueOptionals() {
                 }
                 for (int k = 0; k < myCells[i].getOptionalCount(); k++) {
                     if (newArray[j] == myCells[i].getOptionalValues()[k]) {
+                        cout << nonetID << " Setting Cell " << i+1 << " with " << newArray[j] << endl;
                         myCells[i].setCell(newArray[j]);
-                        //cout << "Setting Cell " << i << " with " <<newArray[j] << endl;
                     }
                 }
             }

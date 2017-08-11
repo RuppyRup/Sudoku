@@ -49,17 +49,28 @@ int main() {
         cout << tmp << " : " << final << endl;
     } while (tmp < final);
     
-    //char non = 'I';
-    //int cell = 9;
+    /*mySudoku.crossCheckAll();
+    mySudoku.crossCheckAll();
+    mySudoku.crossCheckAll();
+    mySudoku.crossCheckAll();*/
+    
+    char non = 'H';
+    int cell1 = 6;
+    int cell2 = 9;
     
     //mySudoku.getNonet(non).getCell(cell).displayOptionals();
     
-    //mySudoku.crossCheckColumn(mySudoku.getNonet(non).getCell(cell));
+    /*mySudoku.crossCheckColumn(mySudoku.getNonet(non).getCell(cell1));
+    mySudoku.crossCheckColumn(mySudoku.getNonet(non).getCell(cell2));
+    mySudoku.crossCheckRow(mySudoku.getNonet(non).getCell(cell1));
+    mySudoku.crossCheckRow(mySudoku.getNonet(non).getCell(cell2));*/
     
+    //mySudoku.getNonet(non).getCell(cell1).removeOptionalValue(7);
+    //mySudoku.getNonet(non).getCell(cell2).removeOptionalValue(7);
     mySudoku.displaySudoku();
     
-    //mySudoku.getNonet(non).getCell(cell).displayOptionals();
-    
+    mySudoku.getNonet(non).getCell(cell1).displayCellAttributes();
+    mySudoku.getNonet(non).getCell(cell2).displayCellAttributes();
     
     return 0;
 }
