@@ -68,8 +68,20 @@ void Nonet::cellsSolved() {
 }
 
 bool Nonet::nonetSetCell(Cell & cellObj, int solutionValue) {
-    cellObj.setCell(solutionValue);
-    return true;
+    bool alreadySet = false;
+    for (int i = 0; i < solvedCount; i++) {
+        if (solutionValue == solvedCells[i]) {
+            alreadySet = true;
+            cout << "A nonet cell has already been set at that value" << endl;
+        }
+    }
+    if (alreadySet) {
+        return false;
+    }
+    else {
+        cellObj.setCell(solutionValue);
+        return true;
+    }
 }
 
 void Nonet::nonetReduction() {
@@ -131,7 +143,13 @@ void Nonet::nonetFindUniqueOptionals() {
                 for (int k = 0; k < myCells[i].getOptionalCount(); k++) {
                     if (newArray[j] == myCells[i].getOptionalValues()[k]) {
                         cout << nonetID << " Setting Cell " << i+1 << " with " << newArray[j] << endl;
-                        myCells[i].setCell(newArray[j]);
+                        //myCells[i].setCell(newArray[j]);
+                        if (nonetSetCell(myCells[i], newArray[j])) {
+                            cout << nonetID << " Setting Cell " << i+1 << " with " << newArray[j] << "PASS" << endl;
+                        }
+                        else {
+                            cout << nonetID << " Setting Cell " << i+1 << " with " << newArray[j] << "FAIL" << endl;
+                        }
                     }
                 }
             }

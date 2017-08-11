@@ -77,6 +77,7 @@ bool Cell::removeOptionalValue(int numberToRemove) {
     if (optionalCount == 1) {
         //cout << "bob" << endl;
         setCell(optionalValues[0]);
+        //Nonet::nonetSetCell(
         cout << "bob" << endl;
         return true;
     }
