@@ -118,5 +118,9 @@ void Cell::displayCellAttributes() {
     displayOptionals();
     displayCell();
 }
+
+void Cell::decrementOptionalCount() {
+    optionalCount--;
+}
     
     

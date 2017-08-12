@@ -21,6 +21,7 @@ public:
     bool getCellIsSolved() { return cellIsSolved; }
     int getSolutionValue() { return solutionValue; }
     int getOptionalCount() { return optionalCount; }
+    void decrementOptionalCount();
     int * getOptionalValues() { return optionalValues; }
     int getCellID() { return cellID; }
     char getNonetID() { return nonetID; }

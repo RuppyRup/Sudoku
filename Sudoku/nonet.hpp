@@ -27,6 +27,7 @@ public:
     void displayNonet();
     void nonetReduction();
     void nonetFindUniqueOptionals();
+    bool removeCellOptionalValue(Cell &, int);
 };
 
 #endif

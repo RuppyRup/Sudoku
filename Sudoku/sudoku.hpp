@@ -20,6 +20,7 @@ public:
     void crossCheckRow(Cell &);
     void crossCheckColumn(Cell &);
     int crossCheckAll();
+    int sudokuCellsSolved();
 };
 
 

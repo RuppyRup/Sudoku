@@ -44,10 +44,15 @@ int main() {
     int tmp = 0;
     int final = 0;
     do {
-        tmp =  mySudoku.crossCheckAll();
-        final =  mySudoku.crossCheckAll();
+        tmp =  mySudoku.sudokuCellsSolved();
+        mySudoku.crossCheckAll();
+        mySudoku.sudokuReduction();
+        final =  mySudoku.sudokuCellsSolved();
         cout << tmp << " : " << final << endl;
     } while (tmp < final);
+    
+    
+    mySudoku.sudokuReduction();
     
     /*mySudoku.crossCheckAll();
     mySudoku.crossCheckAll();

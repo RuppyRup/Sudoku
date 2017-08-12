@@ -95,7 +95,7 @@ void Nonet::nonetReduction() {
         for (int i = 0; i < solvedCount; i++) {
             //cout << "Nonet reduction" << endl;
             //cout << "true: " << myCells[j].removeOptionalValue(solvedCells[i]) << endl;
-            if (myCells[j].removeOptionalValue(solvedCells[i])) {
+            if (removeCellOptionalValue(myCells[j], solvedCells[i])) {
                 cellsSolved();
                 cout << "Nonet Reduction: solution found" << endl;
                 break;
@@ -158,3 +158,55 @@ void Nonet::nonetFindUniqueOptionals() {
     }
     delete [] newArray;
 }
+
+
+bool Nonet::removeCellOptionalValue(Cell & cellObj, int numberToRemove) {
+    /** each cell (unless it is set at the start) is initalised with
+     an array of optional values from 1 - 9. The process of Sudoku is
+     to reduce these options down to 1 which will then be the
+     solutionValue. Returns true if a solution value is found by running this method **/
+    int arrayIndex = 0;
+    bool foundNumber = false;
+    // If cell has already been solved return true.
+    // otherwise optional count is reduced to zero.
+    if (cellObj.getCellIsSolved()) {
+        return false;
+    }
+    for (int i = 0; i < cellObj.getOptionalCount(); i++) {
+        if (cellObj.getOptionalValues()[i] == numberToRemove) {
+            arrayIndex = i;
+            cout << "Removing value " << cellObj.getOptionalValues()[i] << " at " << arrayIndex + 1;
+            cout << " " << cellObj.getNonetID() << " : " << cellObj.getCellID() << endl;
+            foundNumber = true;
+            break;
+        }
+    }
+    if (!foundNumber) {
+        //cout << "Couldn't find number to remove from optionals" << endl;
+        return false;
+    }
+    cellObj.decrementOptionalCount();
+    //cout << "Optional count" << optionalCount << endl;
+    if (cellObj.getOptionalCount() == 1) {
+        //cout << "bob" << endl;
+        //setCell(optionalValues[0]);
+        nonetSetCell(cellObj, cellObj.getOptionalValues()[0]);
+        cout << "bob" << endl;
+        return true;
+    }
+    else {
+        for (int i = arrayIndex; i < cellObj.getOptionalCount(); i++) {
+            cellObj.getOptionalValues()[i] = cellObj.getOptionalValues()[i+1];
+        }
+        return false;
+    }
+}
+    
+    
+    /** if optional value = 1 then the solution must have been found
+     if (optionalCount == 1) {
+     cellIsSolved = true;
+     solutionValue = optionalValues[0];
+     cout << "Opt Nonet: "<< nonetID << " cell: " << cellID << " is set by optional value "<< optionalValues[0] << endl;
+     } **/
+
