@@ -29,18 +29,13 @@ bool Cell::setCell(int solutionValue) {
  to 1 and to flag that the cellIsSolved = true. This can be set
  at the start or when a solution is found for the cell **/
     
-    if ((solutionValue >= 1) && (solutionValue <= CELL_COUNT)) {
-        this->solutionValue = solutionValue;
-        optionalValues[0] = solutionValue;
-        optionalCount = 1;
-        cellIsSolved = true;
-        cout << nonetID << " Cell " << cellID << " has been set with " << solutionValue << endl;
-        return true;
-    }
-    else {
-        cout << "Cell not set" << endl;
-        return false;
-    }
+    this->solutionValue = solutionValue;
+    optionalValues[0] = solutionValue;
+    optionalCount = 1;
+    cellIsSolved = true;
+    cout << nonetID << " Cell " << cellID << " has been set with " << solutionValue << endl;
+    return true;
+    
 }
 
 bool Cell::removeOptionalValue(int numberToRemove) {

@@ -39,6 +39,14 @@ int main() {
     mySudoku.getNonet('I').getCell(4).setCell(9);
 
     mySudoku.displaySudoku();
+    
+    /** Need to debug using individual nonets.
+     Cells are trying to be set that have already been set
+     **/
+    
+    
+    
+    
     mySudoku.sudokuReduction();
     
     int tmp = 0;
@@ -52,7 +60,6 @@ int main() {
     } while (tmp < final);
     
     
-    mySudoku.sudokuReduction();
     
     /*mySudoku.crossCheckAll();
     mySudoku.crossCheckAll();

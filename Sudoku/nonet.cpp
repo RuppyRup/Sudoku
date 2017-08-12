@@ -187,6 +187,8 @@ bool Nonet::removeCellOptionalValue(Cell & cellObj, int numberToRemove) {
     }
     cellObj.decrementOptionalCount();
     //cout << "Optional count" << optionalCount << endl;
+    
+    
     if (cellObj.getOptionalCount() == 1) {
         //cout << "bob" << endl;
         //setCell(optionalValues[0]);
