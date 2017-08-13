@@ -37,6 +37,14 @@ int main() {
     mySudoku.getNonet('I').getCell(2).setCell(4);
     mySudoku.getNonet('I').getCell(3).setCell(2);
     mySudoku.getNonet('I').getCell(4).setCell(9);
+    
+    /** Set additional cells for testing purposes
+    
+    mySudoku.getNonet('G').getCell(1).setCell(1);
+    mySudoku.getNonet('G').getCell(6).setCell(4);
+    mySudoku.getNonet('I').getCell(1).setCell(8);
+    mySudoku.getNonet('I').getCell(5).setCell(3);
+    mySudoku.getNonet('I').getCell(6).setCell(1); **/
 
     mySudoku.displaySudoku();
     
@@ -60,15 +68,21 @@ int main() {
     } while (tmp < final);
     
     
+    /**
     
-    /*mySudoku.crossCheckAll();
-    mySudoku.crossCheckAll();
-    mySudoku.crossCheckAll();
-    mySudoku.crossCheckAll();*/
     
-    char non = 'H';
-    int cell1 = 6;
-    int cell2 = 9;
+    mySudoku.getNonet(non).nonetReduction();
+    mySudoku.getNonet(non).nonetFindUniqueOptionals();
+    for (int i = 1; i <= CELL_COUNT; i++) {
+        mySudoku.crossCheckRow(mySudoku.getNonet(non).getCell(i));
+        mySudoku.crossCheckColumn(mySudoku.getNonet(non).getCell(i));
+    }
+    
+   
+     **/
+    
+    //int cell1 = 6;
+    //int cell2 = 9;
     
     //mySudoku.getNonet(non).getCell(cell).displayOptionals();
     
@@ -79,10 +93,21 @@ int main() {
     
     //mySudoku.getNonet(non).getCell(cell1).removeOptionalValue(7);
     //mySudoku.getNonet(non).getCell(cell2).removeOptionalValue(7);
+    
+    /**mySudoku.getNonet(non).cellsSolved();
+    mySudoku.getNonet(non).displayCellsSolved();
+    mySudoku.getNonet(non).nonetSetCell(mySudoku.getNonet('H').getCell(6), 2);**/
+    
+    char non = 'H';
+    cout << "Solved count for nonet " << non << " " << mySudoku.getNonet(non).getSolvedCount() << endl;
+    
     mySudoku.displaySudoku();
     
-    mySudoku.getNonet(non).getCell(cell1).displayCellAttributes();
-    mySudoku.getNonet(non).getCell(cell2).displayCellAttributes();
+    for (int i = 1; i <= CELL_COUNT; i++) {
+        mySudoku.getNonet(non).getCell(i).displayCellAttributes();
+    }
+    
+    
     
     return 0;
 }

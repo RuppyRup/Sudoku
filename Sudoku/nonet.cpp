@@ -67,9 +67,18 @@ void Nonet::cellsSolved() {
     solvedCount = count;
 }
 
+void Nonet::displayCellsSolved() {
+    cout << "Solved values : ";
+    for (int i = 0; i < solvedCount; i++) {
+        cout << solvedCells[i] << ", ";
+    }
+    cout << endl;
+}
+
 bool Nonet::nonetSetCell(Cell & cellObj, int solutionValue) {
     bool alreadySet = false;
     for (int i = 0; i < solvedCount; i++) {
+        cout << "solved value = " << solvedCells[i] << endl;
         if (solutionValue == solvedCells[i]) {
             alreadySet = true;
             cout << "A nonet cell has already been set at that value" << endl;
@@ -176,7 +185,7 @@ bool Nonet::removeCellOptionalValue(Cell & cellObj, int numberToRemove) {
         if (cellObj.getOptionalValues()[i] == numberToRemove) {
             arrayIndex = i;
             cout << "Removing value " << cellObj.getOptionalValues()[i] << " at " << arrayIndex + 1;
-            cout << " " << cellObj.getNonetID() << " : " << cellObj.getCellID() << endl;
+            cout << " " << getNonetID() << "-" <<cellObj.getNonetID() << " : " << cellObj.getCellID() << endl;
             foundNumber = true;
             break;
         }
@@ -187,21 +196,19 @@ bool Nonet::removeCellOptionalValue(Cell & cellObj, int numberToRemove) {
     }
     cellObj.decrementOptionalCount();
     //cout << "Optional count" << optionalCount << endl;
-    
+    for (int i = arrayIndex; i < cellObj.getOptionalCount(); i++) {
+        cellObj.getOptionalValues()[i] = cellObj.getOptionalValues()[i+1];
+    }
     
     if (cellObj.getOptionalCount() == 1) {
         //cout << "bob" << endl;
-        //setCell(optionalValues[0]);
+        cout << "setting cell with " << cellObj.getOptionalValues()[0] << cellObj.getNonetID() << cellObj.getCellID() << endl;
         nonetSetCell(cellObj, cellObj.getOptionalValues()[0]);
         cout << "bob" << endl;
         return true;
     }
-    else {
-        for (int i = arrayIndex; i < cellObj.getOptionalCount(); i++) {
-            cellObj.getOptionalValues()[i] = cellObj.getOptionalValues()[i+1];
-        }
-        return false;
-    }
+    
+    return false;
 }
     
     

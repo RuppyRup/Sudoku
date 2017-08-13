@@ -25,6 +25,7 @@ public:
     bool nonetSetCell(Cell &, int);
     void fillNonet();
     void displayNonet();
+    void displayCellsSolved();
     void nonetReduction();
     void nonetFindUniqueOptionals();
     bool removeCellOptionalValue(Cell &, int);

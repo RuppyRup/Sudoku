@@ -64,7 +64,7 @@ void Sudoku::crossCheckRow(Cell & cellObj) {
                 for (int i = 65 + m; i < 68 + m; i++) {
                     for (int k = 1; k < 4; k++) {
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                            if (getNonet((char)i).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
+                            if (getNonet(myNonetID).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
                                 sudokuReduction();
                             }
                         }
@@ -75,7 +75,7 @@ void Sudoku::crossCheckRow(Cell & cellObj) {
                 for (int i = 65 + m; i < 68 + m; i++) {
                     for (int k = 4; k < 7; k++) {
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                            if (getNonet((char)i).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
+                            if (getNonet(myNonetID).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
                                 sudokuReduction();
                             }
                         }
@@ -86,7 +86,7 @@ void Sudoku::crossCheckRow(Cell & cellObj) {
                 for (int i = 65 + m; i < 68 + m; i++) {
                     for (int k = 7; k < 10; k++) {
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                            if (getNonet((char)i).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
+                            if (getNonet(myNonetID).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
                                 sudokuReduction();
                             }
                         }
@@ -112,7 +112,7 @@ void Sudoku::crossCheckColumn(Cell & cellObj) {
                     for (int k = 1; k <= CELL_COUNT; k+=3) {
                         //cout << "Nonet: " << char(i) << "Cell: " << k << endl;
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                            if (getNonet((char)i).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
+                            if (getNonet(myNonetID).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
                                 sudokuReduction();
                             }
                         }
@@ -124,7 +124,7 @@ void Sudoku::crossCheckColumn(Cell & cellObj) {
                     for (int k = 2; k <= CELL_COUNT; k+=3) {
                         //cout << "Nonet: " << char(i) << "Cell: " << k << endl;
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                            if (getNonet((char)i).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
+                            if (getNonet(myNonetID).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
                                 sudokuReduction();
                             }
                         }
@@ -136,7 +136,7 @@ void Sudoku::crossCheckColumn(Cell & cellObj) {
                     for (int k = 3; k <= CELL_COUNT; k+=3) {
                         //cout << "Nonet: " << char(i) << "Cell: " << k << endl;
                         if (getNonet((char)i).getCell(k).getCellIsSolved()) {
-                            if (getNonet((char)i).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
+                            if (getNonet(myNonetID).removeCellOptionalValue(cellObj, getNonet((char)i).getCell(k).getSolutionValue())) {
                                 sudokuReduction();
                             }
                         }
