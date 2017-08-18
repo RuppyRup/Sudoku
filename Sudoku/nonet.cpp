@@ -45,14 +45,6 @@ void Nonet::fillNonet() {
     }
 }
 
-int * Nonet::returnUnSolvedCells() {
-    for (int i = 0; i < CELL_COUNT; i++) {
-        myCells[i].setCellID(i+1);
-        myCells[i].setNonetID(nonetID);
-    }
-
-}
-
 void Nonet::displayNonet() {
 /** Displays the cells with solutionvalue of the nonet **/
     for (int i = 0; i < CELL_COUNT; i++) {
@@ -65,14 +57,17 @@ void Nonet::displayNonet() {
 void Nonet::cellsSolved() {
 /** Produces an array of values that have been solved
  in this nonet. Updates the value solvedCount **/
-    int count = 0;
+    int countSolved = 0;
     for (int i = 0; i < CELL_COUNT; i++) {
         if (myCells[i].getCellIsSolved()) {
-            solvedCells[count++] = myCells[i].getSolutionValue();
+            solvedCells[countSolved++] = myCells[i].getSolutionValue();
+        }
+        else {
+            unSolvedCells[myCells[i].getCellID()] = myCells[i].getOptionalValues();
         }
     }
     //cout << "cells solved: " << count << endl;
-    solvedCount = count;
+    solvedCount = countSolved;
 }
 
 void Nonet::displayCellsSolved() {

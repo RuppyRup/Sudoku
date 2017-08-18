@@ -89,10 +89,12 @@ int main() {
         int solutions = CELL_COUNT - mostSolvedCells;
         cout << "Nonet " << mostSolvedNonet << " has " << solutions << " cells unsolved" << endl;
         int * solutionArray = new int[solutions];
-        solutionArray = mySudoku.getNonet(mostSolvedNonet).returnSolvedCells();
+        /** need to implment unsolved cells map to get options to try
+        
+        //solutionArray = mySudoku.getNonet(mostSolvedNonet).returnSolvedCells();
         for (int i = 0; i < solutions; i++) {
             cout << "Solution Cell: " << solutionArray[i] << endl;
-        }
+        }**/
         
         
         

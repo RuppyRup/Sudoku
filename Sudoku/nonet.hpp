@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "cell.hpp"
+#include<map>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ private:
     int solvedCount;
     Cell myCells[CELL_COUNT];
     int solvedCells[CELL_COUNT];
-    int unSolvedCells[CELL_COUNT];
+    map<int, int *> unSolvedCells;
 public:
     Nonet();
     ~Nonet();
@@ -22,7 +23,7 @@ public:
     bool isNonetSolved();
     int getSolvedCount();
     void cellsSolved();
-    int * returnUnSolvedCells();
+    map<int, int *> & returnUnSolvedCells() { return unSolvedCells; }
     Cell & getCell(int);
     bool nonetSetCell(Cell &, int);
     void fillNonet();
