@@ -13,6 +13,7 @@ private:
     int solvedCount;
     Cell myCells[CELL_COUNT];
     int solvedCells[CELL_COUNT];
+    int unSolvedCells[CELL_COUNT];
 public:
     Nonet();
     ~Nonet();
@@ -21,6 +22,7 @@ public:
     bool isNonetSolved();
     int getSolvedCount();
     void cellsSolved();
+    int * returnUnSolvedCells();
     Cell & getCell(int);
     bool nonetSetCell(Cell &, int);
     void fillNonet();

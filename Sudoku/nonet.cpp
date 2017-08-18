@@ -45,6 +45,14 @@ void Nonet::fillNonet() {
     }
 }
 
+int * Nonet::returnUnSolvedCells() {
+    for (int i = 0; i < CELL_COUNT; i++) {
+        myCells[i].setCellID(i+1);
+        myCells[i].setNonetID(nonetID);
+    }
+
+}
+
 void Nonet::displayNonet() {
 /** Displays the cells with solutionvalue of the nonet **/
     for (int i = 0; i < CELL_COUNT; i++) {
@@ -76,6 +84,7 @@ void Nonet::displayCellsSolved() {
 }
 
 bool Nonet::nonetSetCell(Cell & cellObj, int solutionValue) {
+    cellsSolved();
     bool alreadySet = false;
     for (int i = 0; i < solvedCount; i++) {
         cout << "solved value = " << solvedCells[i] << endl;

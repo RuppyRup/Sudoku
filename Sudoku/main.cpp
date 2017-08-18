@@ -9,42 +9,39 @@ int main() {
     //Nonet array[2] = {A, B};
     Sudoku mySudoku;
     // Sunday Times Warm-Up Sudoku
-    mySudoku.getNonet('A').getCell(3).setCell(7);
-    mySudoku.getNonet('A').getCell(6).setCell(1);
-    mySudoku.getNonet('A').getCell(8).setCell(9);
-    mySudoku.getNonet('B').getCell(4).setCell(4);
-    mySudoku.getNonet('B').getCell(5).setCell(2);
-    mySudoku.getNonet('B').getCell(6).setCell(6);
-    mySudoku.getNonet('B').getCell(9).setCell(8);
-    mySudoku.getNonet('C').getCell(1).setCell(5);
-    mySudoku.getNonet('C').getCell(2).setCell(2);
-    mySudoku.getNonet('C').getCell(6).setCell(7);
-    mySudoku.getNonet('C').getCell(9).setCell(4);
-    mySudoku.getNonet('D').getCell(3).setCell(6);
-    mySudoku.getNonet('D').getCell(5).setCell(3);
-    mySudoku.getNonet('D').getCell(6).setCell(9);
-    mySudoku.getNonet('D').getCell(7).setCell(2);
-    mySudoku.getNonet('E').getCell(4).setCell(1);
-    mySudoku.getNonet('E').getCell(8).setCell(4);
-    mySudoku.getNonet('F').getCell(1).setCell(4);
+    mySudoku.getNonet('A').getCell(4).setCell(6);
+    mySudoku.getNonet('A').getCell(6).setCell(2);
+    mySudoku.getNonet('A').getCell(7).setCell(9);
+    mySudoku.getNonet('B').getCell(1).setCell(8);
+    mySudoku.getNonet('B').getCell(6).setCell(4);
+    mySudoku.getNonet('B').getCell(9).setCell(7);
+    mySudoku.getNonet('C').getCell(5).setCell(5);
+    mySudoku.getNonet('D').getCell(3).setCell(3);
+    mySudoku.getNonet('D').getCell(7).setCell(1);
+    mySudoku.getNonet('D').getCell(8).setCell(5);
+    mySudoku.getNonet('E').getCell(1).setCell(6);
+    mySudoku.getNonet('E').getCell(3).setCell(1);
+    mySudoku.getNonet('E').getCell(5).setCell(3);
+    mySudoku.getNonet('E').getCell(9).setCell(2);
+    mySudoku.getNonet('F').getCell(1).setCell(9);
     mySudoku.getNonet('F').getCell(2).setCell(8);
-    mySudoku.getNonet('F').getCell(5).setCell(5);
-    mySudoku.getNonet('F').getCell(8).setCell(7);
-    mySudoku.getNonet('H').getCell(2).setCell(7);
+    mySudoku.getNonet('F').getCell(9).setCell(7);
+    mySudoku.getNonet('G').getCell(2).setCell(1);
+    mySudoku.getNonet('G').getCell(4).setCell(2);
+    mySudoku.getNonet('G').getCell(6).setCell(5);
+    mySudoku.getNonet('G').getCell(8).setCell(9);
     mySudoku.getNonet('H').getCell(3).setCell(9);
-    mySudoku.getNonet('H').getCell(5).setCell(6);
-    mySudoku.getNonet('H').getCell(7).setCell(3);
-    mySudoku.getNonet('I').getCell(2).setCell(4);
-    mySudoku.getNonet('I').getCell(3).setCell(2);
-    mySudoku.getNonet('I').getCell(4).setCell(9);
+    mySudoku.getNonet('H').getCell(4).setCell(4);
+    mySudoku.getNonet('H').getCell(7).setCell(5);
+    mySudoku.getNonet('I').getCell(2).setCell(2);
+    mySudoku.getNonet('I').getCell(7).setCell(4);
+    mySudoku.getNonet('I').getCell(8).setCell(1);
+    
     
     /** Set additional cells for testing purposes
     
-    mySudoku.getNonet('G').getCell(1).setCell(1);
-    mySudoku.getNonet('G').getCell(6).setCell(4);
-    mySudoku.getNonet('I').getCell(1).setCell(8);
-    mySudoku.getNonet('I').getCell(5).setCell(3);
-    mySudoku.getNonet('I').getCell(6).setCell(1); **/
+    mySudoku.getNonet('H').getCell(6).setCell(6);**/
+    
 
     mySudoku.displaySudoku();
     
@@ -63,11 +60,44 @@ int main() {
         tmp =  mySudoku.sudokuCellsSolved();
         mySudoku.crossCheckAll();
         mySudoku.sudokuReduction();
-        final =  mySudoku.sudokuCellsSolved();
+        final =  mySudoku.sudokuCellsSolved();;
         cout << tmp << " : " << final << endl;
     } while (tmp < final);
     
+    /** need to solve for hidden pairs -> two pairs in different cells 
+     of a nonet. The two cells must contain one of this pair, so the options
+     additional to this pair can be deleted from these cells. **/
     
+    if (final < 81) {
+        char mostSolvedNonet = 'x';
+        int mostSolvedCells = 0;
+        int solvedCells = 8;
+        while (solvedCells-- != 0) {
+            for (int i = 0; i < NONET_COUNT; i++) {
+                if (mySudoku.getNonet((char)(65 + i)).isNonetSolved()) {
+                    continue;
+                }
+                if (mySudoku.getNonet((char)(65 + i)).getSolvedCount() == solvedCells) {
+                    //cout << "Nonet " << (char)(65 + i) << " has solved " << solvedCells << " cells" << endl;
+                    if (solvedCells > mostSolvedCells) {
+                        mostSolvedCells = solvedCells;
+                        mostSolvedNonet = (char)(65 + i);
+                    }
+                }
+            }
+        }
+        int solutions = CELL_COUNT - mostSolvedCells;
+        cout << "Nonet " << mostSolvedNonet << " has " << solutions << " cells unsolved" << endl;
+        int * solutionArray = new int[solutions];
+        solutionArray = mySudoku.getNonet(mostSolvedNonet).returnSolvedCells();
+        for (int i = 0; i < solutions; i++) {
+            cout << "Solution Cell: " << solutionArray[i] << endl;
+        }
+        
+        
+        
+        delete [] solutionArray;
+    }
     /**
     
     
