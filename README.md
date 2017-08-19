@@ -13,8 +13,8 @@ Xcode
 ### Installing
 
 Load Xcode
-create a new console app project
-Source Control -> Master - > Configure -> add remote -> git@github.com:RuppyRup/Sudoku.git
+Click on "Check out an existing project"
+Use git@github.com:RuppyRup/Sudoku.git as your remote repository.
 
 ## Running the tests
 
