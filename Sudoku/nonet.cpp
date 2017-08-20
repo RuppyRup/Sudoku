@@ -58,6 +58,7 @@ void Nonet::cellsSolved() {
 /** Produces an array of values that have been solved
  in this nonet. Updates the value solvedCount **/
     int countSolved = 0;
+    unSolvedCells.clear();
     for (int i = 0; i < CELL_COUNT; i++) {
         if (myCells[i].getCellIsSolved()) {
             solvedCells[countSolved++] = myCells[i].getSolutionValue();

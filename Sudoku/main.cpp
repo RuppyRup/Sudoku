@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <map>
 #include "cell.hpp"
 #include "nonet.hpp"
 #include "sudoku.hpp"
@@ -88,7 +90,14 @@ int main() {
         }
         int solutions = CELL_COUNT - mostSolvedCells;
         cout << "Nonet " << mostSolvedNonet << " has " << solutions << " cells unsolved" << endl;
-        int * solutionArray = new int[solutions];
+        //int * solutionArray = new int[solutions];
+        
+        
+        map<int, int *> solutionArray = mySudoku.getNonet(mostSolvedNonet).returnUnSolvedCells();
+        
+        for (map<int, int*>::iterator it = solutionArray.begin(); it != solutionArray.end(); it++) {
+            cout << "optional: " << it->first << " : " << it->second[0] << ", " << it->second[1] << endl;
+        }
         /** need to implment unsolved cells map to get options to try
         
         //solutionArray = mySudoku.getNonet(mostSolvedNonet).returnSolvedCells();
@@ -98,7 +107,7 @@ int main() {
         
         
         
-        delete [] solutionArray;
+        //delete[] solutionArray;
     }
     /**
     
