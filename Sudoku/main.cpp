@@ -62,7 +62,7 @@ int main() {
         tmp =  mySudoku.sudokuCellsSolved();
         mySudoku.crossCheckAll();
         mySudoku.sudokuReduction();
-        final =  mySudoku.sudokuCellsSolved();;
+        final =  mySudoku.sudokuCellsSolved();
         cout << tmp << " : " << final << endl;
     } while (tmp < final);
     
@@ -97,7 +97,27 @@ int main() {
         
         for (map<int, int*>::iterator it = solutionArray.begin(); it != solutionArray.end(); it++) {
             cout << "optional: " << it->first << " : " << it->second[0] << ", " << it->second[1] << endl;
+            Cell & cellTotry = mySudoku.getNonet(mostSolvedNonet).getCell(it->first);
+            int options = cellTotry.getOptionalCount();
+            for (int i = 0; i < options; i++ ) {
+                mySudoku.getNonet(mostSolvedNonet).nonetSetCell(cellTotry, it->second[i]);
+                do {
+                    tmp =  mySudoku.sudokuCellsSolved();
+                    mySudoku.crossCheckAll();
+                    mySudoku.sudokuReduction();
+                    final =  mySudoku.sudokuCellsSolved();
+                    cout << tmp << " : " << final << endl;
+                } while (tmp < final);
+
+                break;
+                
+            }
+            //mySudoku.getNonet(mostSolvedNonet).getCell(it->first).setCell(it->second[0]);
+            //cellTotry.setCell(it->second[0]);
+            break;
         }
+        
+        
         /** need to implment unsolved cells map to get options to try
         
         //solutionArray = mySudoku.getNonet(mostSolvedNonet).returnSolvedCells();
@@ -105,7 +125,7 @@ int main() {
             cout << "Solution Cell: " << solutionArray[i] << endl;
         }**/
         
-        
+        //mySudoku.getNonet('H').getCell(6).setCell(6);
         
         //delete[] solutionArray;
     }
