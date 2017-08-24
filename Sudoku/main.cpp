@@ -31,7 +31,7 @@ int main() {
     //Nonet array[2] = {A, B};
     Sudoku mySudoku;
     // Sunday Times Warm-Up Sudoku
-    mySudoku.getNonet('A').getCell(4).setCell(6);
+    /**mySudoku.getNonet('A').getCell(4).setCell(6);
     mySudoku.getNonet('A').getCell(6).setCell(2);
     mySudoku.getNonet('A').getCell(7).setCell(9);
     mySudoku.getNonet('B').getCell(1).setCell(8);
@@ -57,13 +57,34 @@ int main() {
     mySudoku.getNonet('H').getCell(7).setCell(5);
     mySudoku.getNonet('I').getCell(2).setCell(2);
     mySudoku.getNonet('I').getCell(7).setCell(4);
-    mySudoku.getNonet('I').getCell(8).setCell(1);
-    
-    
-    /** Set additional cells for testing purposes
-    
-    mySudoku.getNonet('H').getCell(6).setCell(6);**/
-    
+    mySudoku.getNonet('I').getCell(8).setCell(1);**/
+    mySudoku.getNonet('A').getCell(3).setCell(7);
+     mySudoku.getNonet('A').getCell(4).setCell(9);
+     mySudoku.getNonet('A').getCell(8).setCell(8);
+     mySudoku.getNonet('B').getCell(1).setCell(2);
+     mySudoku.getNonet('B').getCell(5).setCell(8);
+     mySudoku.getNonet('B').getCell(9).setCell(1);
+     mySudoku.getNonet('C').getCell(4).setCell(5);
+     mySudoku.getNonet('C').getCell(5).setCell(6);
+     mySudoku.getNonet('C').getCell(6).setCell(7);
+     mySudoku.getNonet('D').getCell(4).setCell(1);
+     mySudoku.getNonet('D').getCell(8).setCell(9);
+     mySudoku.getNonet('D').getCell(9).setCell(4);
+     mySudoku.getNonet('E').getCell(3).setCell(6);
+     mySudoku.getNonet('E').getCell(7).setCell(8);
+     mySudoku.getNonet('F').getCell(1).setCell(3);
+     mySudoku.getNonet('F').getCell(2).setCell(9);
+     mySudoku.getNonet('F').getCell(6).setCell(4);
+     mySudoku.getNonet('G').getCell(4).setCell(2);
+     mySudoku.getNonet('G').getCell(5).setCell(6);
+     mySudoku.getNonet('G').getCell(6).setCell(3);
+     mySudoku.getNonet('H').getCell(1).setCell(6);
+     mySudoku.getNonet('H').getCell(5).setCell(7);
+     mySudoku.getNonet('H').getCell(9).setCell(5);
+     mySudoku.getNonet('I').getCell(2).setCell(4);
+     mySudoku.getNonet('I').getCell(6).setCell(8);
+     mySudoku.getNonet('I').getCell(7).setCell(2);
+         
 
     mySudoku.displaySudoku();
     
