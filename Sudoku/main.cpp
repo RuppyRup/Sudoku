@@ -4,6 +4,26 @@
 #include "cell.hpp"
 #include "nonet.hpp"
 #include "sudoku.hpp"
+
+
+int solveSudoku(Sudoku &s) {
+    /** Runs code to solve sudoku and returns the final count
+     of solved cells**/
+    s.sudokuReduction();
+    int tmp = 0;
+    int final = 0;
+    do {
+        tmp =  s.sudokuCellsSolved();
+        s.crossCheckAll();
+        s.sudokuReduction();
+        final =  s.sudokuCellsSolved();
+        cout << tmp << " : " << final << endl;
+    } while (tmp < final);
+    
+    return final;
+}
+
+
 using namespace std;
 
 int main() {
@@ -54,69 +74,55 @@ int main() {
     
     
     
-    mySudoku.sudokuReduction();
     
-    int tmp = 0;
-    int final = 0;
-    do {
-        tmp =  mySudoku.sudokuCellsSolved();
-        mySudoku.crossCheckAll();
-        mySudoku.sudokuReduction();
-        final =  mySudoku.sudokuCellsSolved();
-        cout << tmp << " : " << final << endl;
-    } while (tmp < final);
     
     /** need to solve for hidden pairs -> two pairs in different cells 
      of a nonet. The two cells must contain one of this pair, so the options
      additional to this pair can be deleted from these cells. **/
     
-    if (final < 81) {
-        char mostSolvedNonet = 'x';
-        int mostSolvedCells = 0;
-        int solvedCells = 8;
-        while (solvedCells-- != 0) {
-            for (int i = 0; i < NONET_COUNT; i++) {
-                if (mySudoku.getNonet((char)(65 + i)).isNonetSolved()) {
-                    continue;
-                }
-                if (mySudoku.getNonet((char)(65 + i)).getSolvedCount() == solvedCells) {
-                    //cout << "Nonet " << (char)(65 + i) << " has solved " << solvedCells << " cells" << endl;
-                    if (solvedCells > mostSolvedCells) {
-                        mostSolvedCells = solvedCells;
-                        mostSolvedNonet = (char)(65 + i);
-                    }
-                }
-            }
-        }
-        int solutions = CELL_COUNT - mostSolvedCells;
-        cout << "Nonet " << mostSolvedNonet << " has " << solutions << " cells unsolved" << endl;
+    if (solveSudoku(mySudoku) == 81) {
+        cout << "Sudoku has been solved" << endl;
+        mySudoku.displaySudoku();
+        return 0;
+    }
+    
+    Sudoku tmpSudoku = mySudoku;
+    Nonet & mostSolvedNonet = tmpSudoku.mostSolvedNonet();
+    map<int, int *> solutionArray = mostSolvedNonet.returnUnSolvedCells();
+    
+    for (int n = 0; n < 10; n++) {
+        tmpSudoku = mySudoku;
+        // Need to store current sudoku before guessing
+       
+        
+        //int solutions = CELL_COUNT - mostSolvedCells;
+        //cout << "Nonet " << mostSolvedNonet << " has "  << " cells unsolved" << endl;
         //int * solutionArray = new int[solutions];
         
         
-        map<int, int *> solutionArray = mySudoku.getNonet(mostSolvedNonet).returnUnSolvedCells();
+        
         
         for (map<int, int*>::iterator it = solutionArray.begin(); it != solutionArray.end(); it++) {
             cout << "optional: " << it->first << " : " << it->second[0] << ", " << it->second[1] << endl;
-            Cell & cellTotry = mySudoku.getNonet(mostSolvedNonet).getCell(it->first);
+            Cell & cellTotry = mostSolvedNonet.getCell(it->first);
             int options = cellTotry.getOptionalCount();
             for (int i = 0; i < options; i++ ) {
-                mySudoku.getNonet(mostSolvedNonet).nonetSetCell(cellTotry, it->second[i]);
-                do {
-                    tmp =  mySudoku.sudokuCellsSolved();
-                    mySudoku.crossCheckAll();
-                    mySudoku.sudokuReduction();
-                    final =  mySudoku.sudokuCellsSolved();
-                    cout << tmp << " : " << final << endl;
-                } while (tmp < final);
+                mostSolvedNonet.nonetSetCell(cellTotry, it->second[i]);
+                if (solveSudoku(tmpSudoku) == 81) {
+                    mySudoku = tmpSudoku;
+                    cout << "Sudoku has been solved" << endl;
+                    mySudoku.displaySudoku();
+                    return 0;
 
-                break;
-                
+                }
             }
             //mySudoku.getNonet(mostSolvedNonet).getCell(it->first).setCell(it->second[0]);
             //cellTotry.setCell(it->second[0]);
-            break;
         }
-        
+    }
+    
+    cout << "Solution has failed!!" << endl;
+    mySudoku.displaySudoku();
         
         /** need to implment unsolved cells map to get options to try
         
@@ -128,7 +134,7 @@ int main() {
         //mySudoku.getNonet('H').getCell(6).setCell(6);
         
         //delete[] solutionArray;
-    }
+    
     /**
     
     
@@ -164,11 +170,12 @@ int main() {
     
     mySudoku.displaySudoku();
     
+    
     for (int i = 1; i <= CELL_COUNT; i++) {
         mySudoku.getNonet(non).getCell(i).displayCellAttributes();
     }
     
     
     
-    return 0;
+    return 1;
 }

@@ -15,6 +15,7 @@ public:
     ~Sudoku();
     void fillSudoku();
     Nonet & getNonet(char nonetID);
+    Nonet & mostSolvedNonet();
     void displaySudoku();
     void sudokuReduction();
     void crossCheckRow(Cell &);

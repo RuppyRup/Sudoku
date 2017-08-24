@@ -27,6 +27,27 @@ Nonet & Sudoku::getNonet(char nonetID) {
     return myNonets[0];
 }
 
+Nonet & Sudoku::mostSolvedNonet() {
+    char mostSolvedNonet = 'x';
+    int mostSolvedCells = 0;
+    int solvedCells = 8;
+    while (solvedCells-- != 0) {
+        for (int i = 0; i < NONET_COUNT; i++) {
+            if (getNonet((char)(65 + i)).isNonetSolved()) {
+                continue;
+            }
+            if (getNonet((char)(65 + i)).getSolvedCount() == solvedCells) {
+                //cout << "Nonet " << (char)(65 + i) << " has solved " << solvedCells << " cells" << endl;
+                if (solvedCells > mostSolvedCells) {
+                    mostSolvedCells = solvedCells;
+                    mostSolvedNonet = (char)(65 + i);
+                }
+            }
+        }
+    }
+    return getNonet(mostSolvedNonet);
+}
+
 void Sudoku::fillSudoku() {
     /** Fills the sudoku array of nonets (myNonets) with IDs (A-I) **/
     for (int i = 0; i < NONET_COUNT; i++) {
