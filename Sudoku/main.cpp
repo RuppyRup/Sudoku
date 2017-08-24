@@ -87,10 +87,11 @@ int main() {
     }
     
     Sudoku tmpSudoku = mySudoku;
+    //Nonet & mostSolvedNonet = tmpSudoku.mostSolvedNonet();
+    //map<int, int *> solutionArray = mostSolvedNonet.returnUnSolvedCells();
     Nonet & mostSolvedNonet = tmpSudoku.mostSolvedNonet();
     map<int, int *> solutionArray = mostSolvedNonet.returnUnSolvedCells();
-    
-    for (int n = 0; n < 10; n++) {
+    for (int n = 0; n < 1; n++) {
         tmpSudoku = mySudoku;
         // Need to store current sudoku before guessing
        
@@ -99,23 +100,25 @@ int main() {
         //cout << "Nonet " << mostSolvedNonet << " has "  << " cells unsolved" << endl;
         //int * solutionArray = new int[solutions];
         
-        
-        
-        
         for (map<int, int*>::iterator it = solutionArray.begin(); it != solutionArray.end(); it++) {
             cout << "optional: " << it->first << " : " << it->second[0] << ", " << it->second[1] << endl;
             Cell & cellTotry = mostSolvedNonet.getCell(it->first);
+
             int options = cellTotry.getOptionalCount();
             for (int i = 0; i < options; i++ ) {
+                tmpSudoku = mySudoku;
+                mostSolvedNonet = tmpSudoku.mostSolvedNonet();
                 mostSolvedNonet.nonetSetCell(cellTotry, it->second[i]);
+                tmpSudoku.displaySudoku();
                 if (solveSudoku(tmpSudoku) == 81) {
                     mySudoku = tmpSudoku;
                     cout << "Sudoku has been solved" << endl;
                     mySudoku.displaySudoku();
                     return 0;
-
+                    
                 }
             }
+
             //mySudoku.getNonet(mostSolvedNonet).getCell(it->first).setCell(it->second[0]);
             //cellTotry.setCell(it->second[0]);
         }
