@@ -121,15 +121,15 @@ int main() {
         //cout << "Nonet " << mostSolvedNonet << " has "  << " cells unsolved" << endl;
         //int * solutionArray = new int[solutions];
         
-        for (map<int, int*>::iterator it = solutionArray.begin(); it != solutionArray.end(); it++) {
-            cout << "optional: " << it->first << " : " << it->second[0] << ", " << it->second[1] << endl;
-            Cell & cellTotry = mostSolvedNonet.getCell(it->first);
+        for (auto it: solutionArray) {
+            cout << "optional: " << it.first << " : " << it.second[0] << ", " << it.second[1] << endl;
+            Cell & cellTotry = mostSolvedNonet.getCell(it.first);
 
             int options = cellTotry.getOptionalCount();
             for (int i = 0; i < options; i++ ) {
                 tmpSudoku = mySudoku;
                 mostSolvedNonet = tmpSudoku.mostSolvedNonet();
-                mostSolvedNonet.nonetSetCell(cellTotry, it->second[i]);
+                mostSolvedNonet.nonetSetCell(cellTotry, it.second[i]);
                 tmpSudoku.displaySudoku();
                 if (solveSudoku(tmpSudoku) == 81) {
                     mySudoku = tmpSudoku;
